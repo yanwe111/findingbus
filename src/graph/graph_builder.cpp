@@ -43,29 +43,20 @@ BusGraph build_graph(
             string id = find_nearest_stop_id(canonical_stops, s.lat, s.lng);
             if (!id.empty()) stop_ids.push_back(id);
         }
-
-        // Remove consecutive duplicates (same canonical stop)
-        vector<string> deduped;
-        for (auto& id : stop_ids) {
-            if (deduped.empty() || deduped.back() != id) {
-                deduped.push_back(id);
-            }
-        }
-
         // Add edges between consecutive stops i and i+1
-        for (size_t i = 0; i + 1 < deduped.size(); i++) {
-            auto& from_stop = canonical_stops.at(deduped[i]);
-            auto& to_stop = canonical_stops.at(deduped[i + 1]);
+        for (size_t i = 0; i + 1 < stop_ids.size(); i++) {
+            auto& from_stop = canonical_stops.at(stop_ids[i]);
+            auto& to_stop = canonical_stops.at(stop_ids[i + 1]);
 
             Edge e;
-            e.to_stop_id = deduped[i + 1];
+            e.to_stop_id = stop_ids[i + 1];
             e.distance_km = haversine(from_stop.lat, from_stop.lng, to_stop.lat, to_stop.lng);
             e.route_ref = route.ref;
             e.price_vnd = route.price_vnd;
             e.direction = route.direction;
             e.is_transfer = false; // Mark this as a straight route, NOT a transfer.
 
-            graph.adjacency[deduped[i]].push_back(e);
+            graph.adjacency[stop_ids[i]].push_back(e);
         }
     }
 
