@@ -9,9 +9,9 @@ using namespace std;
 namespace fs = filesystem;
 
 int main(int argc, char* argv[]) {
-    cout << "FindingBus - Bus Route Pathfinder\n\n";
+    cout << "=== FindingBus - Bus Route Pathfinder ===\n\n";
 
-    string osm_path = "data/osm-bus-routes.json";
+    string osm_path = "data/hcm-routes.json";
     string manual_path = "data/dong-nai-manual.json";
     string graph_dir = "data/graph";
 
@@ -28,7 +28,6 @@ int main(int argc, char* argv[]) {
              << "python3 scripts/osm-response-parser.py\n";
     }
 
-    // Buoc 1: Load toan bo tuyen xe
     cout << "[1/4] Loading route data...\n";
     auto routes = load_all_routes(osm_path, manual_path);
     if (routes.empty()) {
@@ -43,7 +42,6 @@ int main(int argc, char* argv[]) {
     // Step 3: Build graph
     cout << "[3/4] Building graph...\n";
     auto graph = build_graph(routes, stops, 2.0); // 2km transfer penalty
-    // print_graph_stats(graph);
 
     // Step 4: Serialize graph
     cout << "[4/4] Serializing graph...\n";
