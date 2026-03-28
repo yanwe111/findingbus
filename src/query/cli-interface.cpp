@@ -102,10 +102,6 @@ void CliInterface::cmd_info(const BusGraph& graph, const string& args) {
     cout << "  Stops: " << stop_count << "\n";
 }
 
-void CliInterface::cmd_stats(const BusGraph& graph) {
-    print_graph_stats(graph);
-}
-
 void CliInterface::cmd_benchmark(const BusGraph& graph) {
     run_benchmarks(graph, "data/experiments");
 }
@@ -137,7 +133,6 @@ void CliInterface::run(const BusGraph& graph) {
 
         if (line == "quit" || line == "exit") break;
         else if (line == "help") cmd_help();
-        else if (line == "stats") cmd_stats(graph);
         else if (line == "benchmark") cmd_benchmark(graph);
         else if (line.substr(0, 4) == "find") cmd_find(graph, line.substr(4));
         else if (line.substr(0, 4) == "info") cmd_info(graph, line.substr(4));

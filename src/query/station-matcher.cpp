@@ -1,7 +1,6 @@
 #include "query/station-matcher.h"
 #include <algorithm>
 #include <cctype>
-
 /// Simple Vietnamese diacritics removal (UTF-8 aware, covers common chars)
 static string strip_vietnamese_diacritics(const string& input) {
     // Map common Vietnamese UTF-8 sequences to ASCII equivalents

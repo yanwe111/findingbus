@@ -5,6 +5,7 @@
 #include <unordered_map>
 #include "stop.h"
 #include "graph/unified-loader.h"
+#include "graph/weight-criteria.h"
 
 using namespace std;
 

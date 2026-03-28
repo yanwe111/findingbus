@@ -4,7 +4,7 @@
 #include <vector>
 #include <unordered_map>
 #include "graph/weight-criteria.h"
-
+#include "graph/stop.h"
 using namespace std;
 
 struct MatchResult {
