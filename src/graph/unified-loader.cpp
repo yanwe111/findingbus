@@ -83,7 +83,7 @@ static vector<LoadedRoute> load_manual_routes(const string& path) {
                     Stop stop;
                     stop.lat = w.value("lat", 0.0);
                     stop.lng = w.value("lng", 0.0);
-                    stop.name = "Waypoint";
+                    stop.name = w.value("name", "Waypoint");
                     if (stop.lat != 0.0 && stop.lng != 0.0) {
                         lr.stops.push_back(stop);
                     }
